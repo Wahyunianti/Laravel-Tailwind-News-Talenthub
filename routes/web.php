@@ -14,5 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/berita', function () {
+    return view('pembaca.berita');
+});
+
+Route::get('/kategori', function () {
+    return view('pembaca.kategori');
+});
+
+Route::get('/subkategori', function () {
+    return view('pembaca.sub-kategori');
+});
+
+Route::get('/swberita', function () {
+    return view('pembaca.tampil-berita');
 });
