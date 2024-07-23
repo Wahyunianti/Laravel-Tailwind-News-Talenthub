@@ -16,14 +16,18 @@
             <div class="flex flex-col w-full h-auto">
                 <nav class="flex flex-row w-full h-20 border border-b-black shadow-sm justify-between px-10">
                     <p class="text-md font-semibold content-center">Wahyuni (Penulis)</p>
-                    <a href="" class="text-md font-semibold content-center">Logout</a>
+                    <form action="{{ route('logout') }}" class="content-center" method="post">
+                                @csrf
+                    <button type="submit" class="text-md font-semibold ">Logout</button>
+
+                    </form>
                 </nav>
 
                 <div class="flex flex-col h-auto w-full p-5 pt-10 xl:p-20">
                     @yield('content')
 
                 </div>
-                
+
             </div>
 
 

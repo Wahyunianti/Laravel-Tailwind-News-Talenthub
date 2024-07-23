@@ -8,6 +8,11 @@
     <title>Awani News</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('lib/datatables/datatables.min.css') }}">
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 </head>
 
 <body>
@@ -30,24 +35,29 @@
                         </button>
                     </div>
 
-                    <ul class=" flex flex-col w-full h-auto mt-10">
+                    <ul class=" flex flex-col w-full h-auto mt-10 gap-2">
                         <a href="/admin" class="text-md font-semibold w-auto">
-                            <li class="hover:bg-slate-100 w-full py-2"><i class="fas fa-home mr-2"></i>Dashboard</li>
+                            <li class="hover:bg-slate-100 hover:px-1 w-full py-2"><i
+                                    class="fas fa-home mr-2"></i>Dashboard</li>
                         </a>
-                        <a href="/user" class="text-md font-semibold w-auto">
-                            <li class="hover:bg-slate-100 w-full py-2"><i class="fas fa-user mr-2"></i>Pengguna Aplikasi
+                        <a href="{{route('pengguna')}}" class="text-md font-semibold w-auto">
+                            <li
+                                class="hover:bg-slate-100 hover:px-1 {{ request()->routeIs('pengguna') ? 'bg-slate-200 px-1' : '' }} w-full py-2 ">
+                                <i class="fas fa-user mr-2"></i>Pengguna Aplikasi
                             </li>
                         </a>
                         <a href="" class="text-md font-semibold w-auto">
-                            <li class="hover:bg-slate-100 w-full py-2"><i
+                            <li class="hover:bg-slate-100 hover:px-1 w-full py-2"><i
                                     class="fas fa-window-restore mr-2"></i>Kategori Berita</li>
                         </a>
                         <a href="" class="text-md font-semibold w-auto">
-                            <li class="hover:bg-slate-100 w-full py-2"><i class="fas fa-weight-hanging mr-2"></i>Bobot
+                            <li class="hover:bg-slate-100 hover:px-1 w-full py-2"><i
+                                    class="fas fa-weight-hanging mr-2"></i>Bobot
                                 Berita</li>
                         </a>
                         <a href="" class="text-md font-semibold w-auto">
-                            <li class="hover:bg-slate-100 w-full py-2"><i class="fas fa-ad mr-2"></i>Iklan</li>
+                            <li class="hover:bg-slate-100 hover:px-1 w-full py-2"><i class="fas fa-ad mr-2"></i>Iklan
+                            </li>
                         </a>
                     </ul>
 
@@ -64,7 +74,11 @@
                                 d="M1 1h15M1 7h15M1 13h15" />
                         </svg>
                     </button>
-                    <a href="" class="text-md font-semibold content-center">Logout</a>
+                    <form action="{{ route('logout') }}" class="content-center" method="post">
+                                @csrf
+                    <button type="submit" class="text-md font-semibold ">Logout</button>
+
+                    </form>
                 </nav>
 
                 <div class="flex flex-col h-auto w-full p-5 pt-10 xl:p-20">
@@ -83,11 +97,12 @@
 
 
     @vite('resources/js/app.js')
-
+    <script src="{{ asset('lib/datatables/datatables.min.js') }}"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
+    @yield('scripts')
 </body>
 
 </html>

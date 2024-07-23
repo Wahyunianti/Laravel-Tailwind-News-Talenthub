@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +22,32 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth')->group(function () {
+
+    //Dashboard
+    Route::get('dashboard-penulis', [DashboardController::class, 'penulis'])->name('dashboard.penulis');
+    Route::get('dashboard-admins', [DashboardController::class, 'admins'])->name('dashboard.admin');
+
+
+    Route::get('pengguna', [UserController::class, 'index'])->name('pengguna');
+    Route::post('pengguna/store', [UserController::class, 'store'])->name('pengguna.store');
+    Route::delete('pengguna/delete/{id}', [UserController::class, 'delete'])->name('pengguna.destroy');
+    Route::put('pengguna/update/{id}', [UserController::class, 'update'])->name('pengguna.update');
+
+
+
+
+
+    Route::prefix('retribusi')->group(function () {
+    });
+});
+
+
+
 
 Route::get('/berita', function () {
     return view('pembaca.berita');
