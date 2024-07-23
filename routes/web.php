@@ -32,3 +32,10 @@ Route::get('/subkategori', function () {
 Route::get('/swberita', function () {
     return view('pembaca.tampil-berita');
 });
+
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
+Route::get('/user', function () {
+    return view('admin.datauser');
+});
