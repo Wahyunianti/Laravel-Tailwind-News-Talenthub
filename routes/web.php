@@ -39,3 +39,15 @@ Route::get('/admin', function () {
 Route::get('/user', function () {
     return view('admin.datauser');
 });
+
+Route::get('/penulis', function () {
+    return view('penulis.dashboard');
+});
+
+Route::get('/tbartikel', function () {
+    return view('penulis.tambah-artikel');
+});
+
+Route::get('/tpartikel', function () {
+    return view('penulis.tampil-artikel');
+});
