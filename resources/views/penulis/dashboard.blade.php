@@ -1,7 +1,7 @@
 @extends('layouts.main3')
 
 @section('content')
-<div class="flex flex-col xl:flex-col h-auto w-full p-10 gap-7 justify-around">
+<div class="flex flex-col xl:flex-col h-auto w-full p-10 pt-0 gap-7 justify-around">
     <div class="flex flex-col">
         <div class="flex flex-row justify-between h-auto content-center">
             <p class="font-semibold">Total Artikel : 8</p>

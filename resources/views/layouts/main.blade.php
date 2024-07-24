@@ -20,13 +20,13 @@
                     </div>
                     <div class="hidden lg:flex flex-row justify-evenly w-full h-full ">
 
-                        <a href="/" class="text-xl text-white hover:text-blue-400 self-center font-normal ">Home</a>
-                        <a href="/berita" class="text-xl text-white  hover:text-blue-400 self-center font-normal ">Berita</a>
-                        <a href="/kategori" class="text-xl text-white  hover:text-blue-400 self-center font-normal ">Kategori</a>
+                        <a href="/" class="text-lg text-white hover:text-blue-400 self-center font-normal ">Home</a>
+                        <a href="/berita" class="text-lg text-white  hover:text-blue-400 self-center font-normal ">Berita</a>
+                        <a href="/kategori" class="text-lg text-white  hover:text-blue-400 self-center font-normal ">Kategori</a>
 
                     </div>
                     <div class="hidden lg:flex flex-row-reverse w-full h-full ">
-                        <button type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="text-xl  hover:text-blue-400 text-white self-center font-semibold ">Login</button>
+                        <button type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="text-lg  hover:text-blue-400 text-white self-center font-semibold ">Login</button>
                     </div>
                     <div class="flex lg:hidden flex-row-reverse w-full h-full ">
                         <button data-collapse-toggle="navbar-default" type="button"
@@ -106,11 +106,11 @@
                     @csrf
                     <div>
                         <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                        <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="username" required />
+                        <input type="text" name="username"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="username" required />
                     </div>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+                        <input type="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
                     </div>
                     <button type="submit" class="w-full text-white bg-gray-800 hover:bg-black focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Login</button>
                     

@@ -17,7 +17,7 @@ class AdminMiddleware
                 return redirect('/')->with('message', 'access denied');
             }
         }else{
-            return redirect('/login')->with('message', 'Login sebagai admin untuk melakukan access');
+            return redirect('/')->with('message', 'Login sebagai admin untuk melakukan access');
         }
     }
 

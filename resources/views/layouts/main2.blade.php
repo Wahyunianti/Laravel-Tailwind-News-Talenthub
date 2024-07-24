@@ -36,8 +36,8 @@
                     </div>
 
                     <ul class=" flex flex-col w-full h-auto mt-10 gap-2">
-                        <a href="/admin" class="text-md font-semibold w-auto">
-                            <li class="hover:bg-slate-100 hover:px-1 w-full py-2"><i
+                        <a href="{{route('dashboard.admin')}}" class="text-md font-semibold w-auto">
+                            <li class="hover:bg-slate-100 hover:px-1 {{ request()->routeIs('dashboard.admin') ? 'bg-slate-200 px-1' : '' }} w-full py-2"><i
                                     class="fas fa-home mr-2"></i>Dashboard</li>
                         </a>
                         <a href="{{route('pengguna')}}" class="text-md font-semibold w-auto">
@@ -46,8 +46,8 @@
                                 <i class="fas fa-user mr-2"></i>Pengguna Aplikasi
                             </li>
                         </a>
-                        <a href="" class="text-md font-semibold w-auto">
-                            <li class="hover:bg-slate-100 hover:px-1 w-full py-2"><i
+                        <a href="{{route('kategori.index')}}" class="text-md font-semibold w-auto">
+                            <li class="hover:bg-slate-100 hover:px-1 {{ request()->routeIs('kategori.index') ? 'bg-slate-200 px-1' : '' }} w-full py-2"><i
                                     class="fas fa-window-restore mr-2"></i>Kategori Berita</li>
                         </a>
                         <a href="" class="text-md font-semibold w-auto">
@@ -55,8 +55,8 @@
                                     class="fas fa-weight-hanging mr-2"></i>Bobot
                                 Berita</li>
                         </a>
-                        <a href="" class="text-md font-semibold w-auto">
-                            <li class="hover:bg-slate-100 hover:px-1 w-full py-2"><i class="fas fa-ad mr-2"></i>Iklan
+                        <a href="{{route('iklan.index')}}" class="text-md font-semibold w-auto">
+                            <li class="hover:bg-slate-100 hover:px-1 {{ request()->routeIs('iklan.index') ? 'bg-slate-200 px-1' : '' }} w-full py-2"><i class="fas fa-ad mr-2"></i>Iklan
                             </li>
                         </a>
                     </ul>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="flex flex-col w-full h-auto">
-                <nav class="flex flex-row w-full h-10 bg-slate-50 border-b justify-between px-10">
+                <nav class="flex flex-row w-full h-12 bg-slate-50 border-b justify-between px-10">
                     <button data-collapse-toggle="navbar-default" type="button"
                         class="text-xl text-black self-center font-semibold " aria-controls="navbar-default"
                         aria-expanded="false">
