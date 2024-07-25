@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->text('konten');
-            $table->string('foto');            
+            $table->string('foto')->nullable();            
             $table->unsignedBigInteger('kategoris_id');
             $table->foreign('kategoris_id')->references('id')->on('kategoris')->cascadeOnDelete()->cascadeOnUpdate();    
             $table->unsignedBigInteger('users_id');

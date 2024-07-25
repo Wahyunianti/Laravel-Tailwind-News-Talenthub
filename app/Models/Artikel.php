@@ -5,7 +5,7 @@ use App\Models\Kategori;
 use App\Models\Komentar;
 use App\Models\Balasan;
 use App\Models\Tag;
-
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,10 +19,14 @@ class Artikel extends Model
     use HasFactory;
 
     protected $table = 'artikels';
-    protected $fillable = ['id', 'judul', 'konten', 'foto', 'kategoris_id'];
+    protected $fillable = ['id', 'judul', 'konten', 'foto', 'kategoris_id', 'users_id'];
 
     public function kategori(): BelongsTo {
         return $this->belongsTo(Kategori::class, 'kategoris_id');
+    }
+
+    public function users(): BelongsTo {
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function komentar(): HasMany {

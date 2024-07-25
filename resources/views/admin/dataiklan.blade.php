@@ -4,6 +4,12 @@
 <div data-aos="fadeIn" class="flex flex-col h-auto w-full border shadow-sm rounded-md p-3 gap-7">
     <p class="bg-slate-800 text-white px-3 py-2 text-center rounded-t-md font-medium">Data Iklan
         Aplikasi Awani News</p>
+    @if($errors->any())
+        @foreach($errors->all() as $pesan)
+            <p>{{ $pesan }}</p>
+        @endforeach
+    @endif
+
     <div class="flex flex-row justify-between">
         <p>Total : {{ $count }} Iklan</p>
         <button type="button" data-modal-target="add-modal" data-modal-toggle="add-modal"
@@ -17,6 +23,10 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">Nama</th>
                     <th scope="col" class="px-6 py-3">Posisi</th>
+                    <th scope="col" class="px-6 py-3 w-40">Link</th>
+
+                    <th scope="col" class="px-6 py-3">Banner</th>
+
                     <th scope="col" class="px-6 py-3 w-40">Aksi</th>
                 </tr>
             </thead>
@@ -27,6 +37,11 @@
                             {{ $u->nama }}
                         </th>
                         <td class="px-6 py-2">{{ $u->posisi }}</td>
+                        <td class="px-6 py-2 "><a class="truncate" href="{{ $u->url }}" target="_blank">{{ $u->url }}</a></td>
+                        <td class="px-6 py-2"><a href="{{ route('iklan.view', ['id' => $u->id]) }}" target="_blank"
+                                style="font-size: 14px;">{{ Str::after($u->foto, '_') }}</a></span><i
+                                class="ml-2 fas fa-external-link-alt"></i></td>
+
                         <td class="px-6 py-2">
                             <div class="flex flex-row gap-3">
                                 <button type="button" data-modal-target="edit-modal-{{ $u->id }}"
@@ -83,9 +98,7 @@
 
                         <label for="foto"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Banner</label>
-                        <input type="file" name="foto"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            required="">
+                        <input type="file" name="foto" class="border border-gray-300 rounded-md w-full" required="">
 
                         <label for="posisi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi
                             Iklan</label>
@@ -123,7 +136,8 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                <form class="p-4 md:p-5" action="{{ route('iklan.update', $u->id) }}" method="post">
+                <form class="p-4 md:p-5" action="{{ route('iklan.update', $u->id) }}" method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="grid gap-4 mb-4 grid-cols-2">
@@ -141,12 +155,9 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="URL Iklan" required>
 
-                            <!-- Banner field (file input does not support value attribute) -->
                             <label for="foto"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Banner</label>
-                            <input type="file" name="foto"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                required>
+                            <input type="file" name="foto" class="border border-gray-300 rounded-md w-full">
 
                             <!-- Posisi Iklan field with value -->
                             <label for="posisi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi
@@ -154,8 +165,10 @@
                             <select id="posisi" name="posisi"
                                 class="block w-full cursor-pointer p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="" disabled {{ $u->posisi ? '' : 'selected' }}>Pilih Posisi</option>
-                                <option value="Halaman Depan" {{ $u->posisi == 1 ? 'selected' : '' }}>Halaman Depan</option>
-                                <option value="Halaman Berita" {{ $u->posisi == 2 ? 'selected' : '' }}>Halaman Berita</option>
+                                <option value="Halaman Depan" {{ $u->posisi == 'Halaman Depan' ? 'selected' : '' }}>Halaman
+                                    Depan</option>
+                                <option value="Halaman Berita" {{ $u->posisi == 'Halaman Berita' ? 'selected' : '' }}>Halaman
+                                    Berita</option>
                             </select>
                         </div>
                     </div>

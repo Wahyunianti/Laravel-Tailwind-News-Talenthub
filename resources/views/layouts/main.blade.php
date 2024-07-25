@@ -127,6 +127,7 @@
     <script>
         AOS.init();
     </script>
+    @yield('scripts')
 </body>
 
 </html>

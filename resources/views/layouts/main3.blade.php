@@ -8,6 +8,7 @@
     <title>Awani News</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 
 <body>
@@ -15,7 +16,7 @@
         <div class="flex flex-row w-full h-auto">
             <div class="flex flex-col w-full h-auto">
                 <nav class="flex flex-row w-full h-20 border border-b-black shadow-sm justify-between px-10">
-                    <p class="text-md font-semibold content-center">Wahyuni (Penulis)</p>
+                    <p class="text-md font-semibold content-center">{{auth()->user()->nama}} ({{auth()->user()->roles->nama}})</p>
                     <form action="{{ route('logout') }}" class="content-center" method="post">
                                 @csrf
                     <button type="submit" class="text-md font-semibold ">Logout</button>
@@ -44,6 +45,11 @@
     <script>
         AOS.init();
     </script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        Quill.init();
+    </script>
+    @yield('scripts')
 </body>
 
 </html>

@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
+use App\Models\Kategori;
+use App\Models\Artikel;
+use App\Models\Tag;
 
 class DashboardController extends Controller
 {
 
     public function penulis()
     {
-        return view('penulis.dashboard');
+        $id_atk = auth()->user()->id;
+        $count = Artikel::where('users_id', $id_atk)->count();
+        $atk = Artikel::where('users_id', $id_atk)->get();
+        
+        return view('penulis.dashboard', compact('atk', 'count'));
     }
     public function admins()
     {

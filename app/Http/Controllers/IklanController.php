@@ -21,7 +21,7 @@ class IklanController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'url' => 'required|url|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto' => 'required|image|max:2048',
             'posisi' => 'required|string|max:255',
         ]);
 
@@ -53,6 +53,10 @@ class IklanController extends Controller
         $iklan = Iklan::find($id);
 
         if ($request->hasFile('foto')) {
+            if ($iklan->foto && file_exists(public_path('uploads/' . $iklan->foto))) {
+                unlink(public_path('uploads/' . $iklan->foto));
+            }
+
             $file = $request->file('foto');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads'), $filename);
@@ -62,7 +66,7 @@ class IklanController extends Controller
         $iklan->nama = $request->nama;
         $iklan->url = $request->url;
         $iklan->posisi = $request->posisi;
-        
+
         $iklan->save();
 
         return redirect()->back()->with('success', 'Iklan berhasil diupdate');
@@ -74,5 +78,22 @@ class IklanController extends Controller
         $iklan->delete();
 
         return redirect()->back()->with('success', 'Iklan berhasil dihapus');
+    }
+
+    public function view($id)
+    {
+        $iklan = Iklan::find($id);
+
+        if (!$iklan) {
+            abort(404);
+        }
+
+        $filePath = public_path('uploads/' . $iklan->foto);
+
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+
+        return response()->file($filePath);
     }
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\IklanController;
+use App\Http\Controllers\ArtikelController;
+
 
 
 
@@ -36,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard-admins', [DashboardController::class, 'admins'])->name('dashboard.admin');
 
 
+    //Admin
     Route::get('pengguna', [UserController::class, 'index'])->name('pengguna');
     Route::post('pengguna/store', [UserController::class, 'store'])->name('pengguna.store');
     Route::delete('pengguna/delete/{id}', [UserController::class, 'delete'])->name('pengguna.destroy');
@@ -48,44 +51,21 @@ Route::middleware('auth')->group(function () {
 
     Route::get('iklan', [IklanController::class, 'index'])->name('iklan.index');
     Route::post('iklan/store', [IklanController::class, 'store'])->name('iklan.store');
-    Route::put('iklan/delete/{id}', [IklanController::class, 'update'])->name('iklan.update');
-    Route::delete('iklan/update/{id}', [IklanController::class, 'delete'])->name('iklan.destroy');
+    Route::put('iklan/update/{id}', [IklanController::class, 'update'])->name('iklan.update');
+    Route::delete('iklan/delete/{id}', [IklanController::class, 'delete'])->name('iklan.destroy');
+    Route::get('/iklan/view/{id}', [IklanController::class, 'view'])->name('iklan.view');
+
+
+    //Penulis 
+    Route::get('tambah-artikel', [ArtikelController::class, 'tambah'])->name('tambah.artikel');
+    Route::post('tambah-artikel', [ArtikelController::class, 'store'])->name('artikel.store');
+    Route::get('edit-artikel/{id}', [ArtikelController::class, 'tampil'])->name('tampil.artikel');
+    Route::get('show-artikel/{id}', [ArtikelController::class, 'show'])->name('show.artikel');
+    Route::put('edit-artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
+    Route::delete('artikel/delete/{id}', [ArtikelController::class, 'delete'])->name('artikel.destroy');
 
     // Route::prefix('kategori')->group(function () {
     // });
 });
 
 
-
-
-Route::get('/berita', function () {
-    return view('pembaca.berita');
-});
-
-
-Route::get('/subkategori', function () {
-    return view('pembaca.sub-kategori');
-});
-
-Route::get('/swberita', function () {
-    return view('pembaca.tampil-berita');
-});
-
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
-Route::get('/user', function () {
-    return view('admin.datauser');
-});
-
-Route::get('/penulis', function () {
-    return view('penulis.dashboard');
-});
-
-Route::get('/tbartikel', function () {
-    return view('penulis.tambah-artikel');
-});
-
-Route::get('/tpartikel', function () {
-    return view('penulis.tampil-artikel');
-});
