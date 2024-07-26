@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\IklanController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\BeritaController;
+
 
 
 
@@ -24,10 +26,11 @@ use App\Http\Controllers\ArtikelController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('index');
 
+Route::get('/berita', function(){return view('pembaca.tampil-berita');});
+
+Route::get('login', [DashboardController::class, 'index'])->name('index');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -36,7 +39,6 @@ Route::middleware('auth')->group(function () {
     //Dashboard
     Route::get('dashboard-penulis', [DashboardController::class, 'penulis'])->name('dashboard.penulis');
     Route::get('dashboard-admins', [DashboardController::class, 'admins'])->name('dashboard.admin');
-
 
     //Admin
     Route::get('pengguna', [UserController::class, 'index'])->name('pengguna');
@@ -64,8 +66,17 @@ Route::middleware('auth')->group(function () {
     Route::put('edit-artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
     Route::delete('artikel/delete/{id}', [ArtikelController::class, 'delete'])->name('artikel.destroy');
 
+    //Berita
+
+
     // Route::prefix('kategori')->group(function () {
     // });
 });
+
+Route::get('view-artikel/{id}', [BeritaController::class, 'viewberita'])->name('view.artikel');
+Route::post('add-komen/{id}', [BeritaController::class, 'komentar'])->name('add.komen');
+Route::post('add-balasan/{id}/{komen}', [BeritaController::class, 'balasan'])->name('add.balasan');
+
+
 
 
