@@ -8,9 +8,10 @@
     <title>Awani News</title>
 
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 
-<body class="flex inset-0 flex-col min-h-screen w-screen">
+<body class="flex inset-0 flex-col min-h-screen w-screen overflow-x-hidden ">
     <div class="inset-0 min-h-screen w-screen" id="app">
         <div class="flex flex-col min-h-screen w-screen inset-x-0 bg-slate-200">
             <nav class="flex flex-initial w-screen h-20 bg-black shadow-md z-30">
@@ -26,6 +27,26 @@
                         <a href="{{route('all.kategori')}}"
                             class="text-lg text-white  hover:text-blue-400 self-center font-normal ">Kategori</a>
 
+                    </div>
+                    <div class="hidden lg:flex flex-row-reverse w-full h-full ">
+                        <form class="flex items-center max-w-sm mx-auto gap-5 float-right" method="GET"
+                            action="{{ route('berita.search') }}">
+                            <div class="relative w-full">
+
+                                <input type="text" id="simple-search" name="query"
+                                    class="bg-gray-300 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Cari Kata Kunci Berita..." required />
+                            </div>
+                            <button type="submit"
+                                class="p-2.5 ms-2 text-sm font-medium text-white bg-gray-800 rounded-md w-20 content-center hover:bg-gray-500">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                                <span class="sr-only">Search</span>
+                            </button>
+                        </form>
                     </div>
                     <div class="hidden lg:flex flex-row-reverse w-full h-full ">
                         <button type="button" data-modal-target="authentication-modal"
@@ -57,7 +78,7 @@
             </div>
 
 
-            <div class="flex flex-col w-screen flex-wrap object-cover min-h-screen  bg-white">
+            <div class="flex flex-col w-screen flex-wrap min-h-screen  bg-white">
                 <div class="flex-grow">
                     @yield('content')
 
@@ -134,6 +155,7 @@
 
 
     @vite('resources/js/app.js')
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>

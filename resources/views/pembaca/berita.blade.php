@@ -1,15 +1,15 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="block   min-h-min" >
+<div class="block   min-h-min">
     <div class="flex mx-0 xl:mx-40 mt-10 border-0 xl:border-2 shadow-none xl:shadow-md rounded-lg">
 
-        <div class="flex flex-row mx-5 lg:mx-10 mt-10  p-0 md:p-5 rounded-lg">
+        <div class="flex flex-row mx-5 w-full lg:mx-10 mt-10  p-0 md:p-5 rounded-lg">
 
 
-            <div class="flex flex-col  ">
+            <div class="flex flex-col  content-center justify-center w-full">
                 <p class="text-lg ml-10 mb-5 font-medium text-blue-800">Semua Berita</p>
-                <div class="flex flex-row flex-wrap justify-center xl:justify-start gap-8 ">
+                <div class="flex flex-row flex-wrap px-0 xl:px-10 justify-center w-full xl:justify-start gap-8 ">
 
                     @foreach ($atk as $a)
 
@@ -43,8 +43,11 @@
 
                     @endforeach
 
-
                 </div>
+                <div class="mt-4">
+                    {{ $atk->links() }}
+                </div>
+
 
 
             </div>

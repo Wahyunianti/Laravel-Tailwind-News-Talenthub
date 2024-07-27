@@ -18,8 +18,15 @@ class BobotController extends Controller
 
     public function index()
     {
-        $ktg = Kategori::all();
         $atk = Artikel::all();
+
+        return view('admin.databobot', compact('atk'));
+    }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('query');
+        $atk = Artikel::where('judul', 'LIKE', "%{$searchTerm}%")->get();
 
         return view('admin.databobot', compact('atk'));
     }

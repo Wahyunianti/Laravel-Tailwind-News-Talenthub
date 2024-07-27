@@ -61,6 +61,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('bobot', [BobotController::class, 'index'])->name('bobot.index');
         Route::post('bobot/update/{id}', [BobotController::class, 'update'])->name('bobot.update');
+        Route::get('/search-articles', [BobotController::class, 'search'])->name('articles.search');
+
     });
 
     Route::middleware('isPenulis')->group(function () {
@@ -83,6 +85,8 @@ Route::middleware('guest')->group(function () {
     //Berita
 
     Route::get('view-artikel/{id}/{judul}', [BeritaController::class, 'viewberita'])->name('view.artikel');
+    Route::get('/search/tag/{nama}', [BeritaController::class, 'Tagnama'])->name('search.tag');
+    Route::get('/search-berita', [BeritaController::class, 'search'])->name('berita.search');
     Route::post('add-komen/{id}', [BeritaController::class, 'komentar'])->name('add.komen');
     Route::post('add-balasan/{id}/{komen}', [BeritaController::class, 'balasan'])->name('add.balasan');
     Route::get('berita', [BeritaController::class, 'allberita'])->name('all.berita');

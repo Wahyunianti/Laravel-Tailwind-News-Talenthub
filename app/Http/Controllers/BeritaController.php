@@ -14,14 +14,32 @@ use Illuminate\Support\Facades\DB;
 
 class BeritaController extends Controller
 {
-    public function tagindex($id)
+    public function Tagnama($nama)
     {
-        $tag = Tag::select('nama')
-            ->distinct()
-            ->get();
-        $atk = Artikel::get();
+        $atk = Artikel::with('bobot', 'tag')
+        ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
+        ->leftJoin('tags', 'artikels.id', '=', 'tags.artikels_id')
+        ->orderBy('bobots.nilai', 'desc')
+        ->orderBy('artikels.updated_at', 'desc')
+        ->select('artikels.*')
+        ->where('tags.nama', $nama)
+        ->paginate(6);
 
-        return view('index', compact('tag'));
+        return view('pembaca.berita', compact('atk'));
+    }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('query');
+        $atk =  Artikel::with('bobot')
+        ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
+        ->orderBy('bobots.nilai', 'desc')
+        ->orderBy('artikels.updated_at', 'desc')
+        ->select('artikels.*')
+        ->where('artikels.judul', 'LIKE', "%{$searchTerm}%")
+        ->paginate(6);
+
+        return view('pembaca.berita', compact('atk'));
     }
 
     public function viewberita($id)
@@ -85,7 +103,12 @@ class BeritaController extends Controller
 
     public function allberita()
     {
-        $atk = Artikel::orderBy('updated_at', 'desc')->take(5)->get();
+        $atk = Artikel::with('bobot')
+        ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
+        ->orderBy('bobots.nilai', 'desc')
+        ->orderBy('artikels.updated_at', 'desc')
+        ->select('artikels.*')
+        ->paginate(6);
 
         return view('pembaca.berita', compact('atk'));
     }

@@ -45,7 +45,7 @@
                                                 @endphp
                                                 <div class="flex flex-col w-full h-auto mt-5">
                                                     <div class="flex flex-row w-full gap-3 justify-start">
-                                                        <img src="{{ asset('img/profile-user.png') }}" class="h-auto w-20" alt="">
+                                                        <img src="{{ asset('img/profile-user.png') }}" class="w-12 h-12" alt="">
                                                         <div class="flex flex-col gap-1">
                                                             <p class="text-sm font-semibold">{{ $komentarUtama->komentar_nama }}</p>
                                                             <p class="text-sm truncate">{{ $komentarUtama->komentar_isi }}</p>
@@ -69,7 +69,7 @@
                                                         @if ($balas->balasan_id)
                                                             <div class="flex flex-col w-full h-auto mt-5 pl-10">
                                                                 <div class="flex flex-row w-full gap-3 h-auto justify-start">
-                                                                    <img src="{{ asset('img/profile-user.png') }}" class="max-h-30 object-cover w-30"
+                                                                    <img src="{{ asset('img/profile-user.png') }}" class="w-12 h-12"
                                                                         alt="">
                                                                     <div class="flex flex-col gap-1">
                                                                         <p class="text-sm font-semibold">{{ $balas->balasan_nama }}</p>

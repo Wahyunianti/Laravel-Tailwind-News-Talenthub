@@ -4,11 +4,35 @@
 <div data-aos="fadeIn" class="flex flex-col h-auto w-full border shadow-sm rounded-md p-3 gap-7">
     <p class="bg-slate-800 text-white px-3 py-2 text-center rounded-t-md font-medium">Data Bobot
         Aplikasi Awani News</p>
+    <div class="flex flex-row justify-between content-center">
+        <p>Cari Artikel</p>
+
+        <form class="flex items-center max-w-sm mx-auto gap-5 float-right" method="GET" action="{{ route('articles.search') }}">
+            <div class="relative w-full">
+
+                <input type="text" id="simple-search" name="query"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Cari Judul Artikel..." required />
+            </div>
+            <button type="submit"
+                class="p-2.5 ms-2 text-sm font-medium text-white bg-gray-800 rounded-md w-20 content-center hover:bg-gray-500">
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
+                <span class="sr-only">Search</span>
+            </button>
+        </form>
+
+    </div>
 
     <div class="relative overflow-x-auto">
         <table id="userTable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                    <th scope="col" class="px-6 py-3 w-40">Thumbnail</th>
+
                     <th scope="col" class="px-6 py-3">Artikel</th>
                     <th scope="col" class="px-6 py-3 w-40">Aksi</th>
                 </tr>
@@ -16,7 +40,16 @@
             <tbody>
                 @foreach ($atk as $a)
                     <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <th scope="row" class="px-6 py-2 ">
+                            @if($a->foto)
+                                <img src="{{ asset('uploads/' . $a->foto) }}" alt="Nama"
+                                    class="h-10 object-cover w-10 rounded-md">
+                            @else
+                                <img src="{{ asset('img/bunga.jpeg')}}" class="h-10 object-cover w-10  rounded-md" alt="">
+                            @endif
+                        </th>
+                        <th scope="row"
+                            class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white truncate">
                             {{ $a->judul }}
                         </th>
                         <td class="px-6 py-2">

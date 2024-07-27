@@ -21,7 +21,15 @@ class DashboardController extends Controller
         $tag = Tag::select('nama')
         ->distinct()
         ->get();
-        $atk = Artikel::orderBy('updated_at', 'desc')->take(5)->get();
+        $atk = Artikel::orderBy('updated_at', 'desc')->paginate(5);
+        
+        $atm = Artikel::with('bobot')
+        ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
+        ->orderBy('bobots.nilai', 'desc')
+        ->select('artikels.*')
+        ->take(3)
+        ->get();
+
         $ktg = Kategori::all();
 
         $afoto = Artikel::withCount(['komentar as total_komentar' => function ($query) {
@@ -37,7 +45,7 @@ class DashboardController extends Controller
         $ikl = Iklan::where('posisi', 'Halaman Depan')->orderBy('updated_at')->first();
 
 
-        return view('index', compact('tag', 'atk', 'afoto', 'ktg', 'ikl'));
+        return view('index', compact('tag', 'atk', 'afoto', 'ktg', 'ikl', 'atm'));
     }
 
     public function penulis()
