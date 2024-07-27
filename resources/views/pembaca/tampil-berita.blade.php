@@ -90,12 +90,22 @@
 
 
                     </div>
-                    <div class="hidden xl:flex flex-col w-1/3 ">
-                        <a href="">
-                            <img src="{{ asset('img/adss2.png')}}" class="h-auto object-cover w-full rounded-md "
-                                alt="">
-                        </a>
-                    </div>
+                    @if ($ikl)
+
+                        <div class="hidden xl:flex flex-col w-1/3 ">
+                            <a href="{{ $ikl->url }}" target="_blank">
+                                @if($ikl->foto)
+                                    <img src="{{ asset('uploads/' . $ikl->foto) }}" alt="Nama"
+                                        class="h-auto object-cover w-full rounded-md ">
+                                @else
+
+                                    <img src="{{ asset('img/adss2.png')}}" class="h-auto object-cover w-full rounded-md "
+                                        alt="">
+                                @endif
+                            </a>
+                        </div>
+
+                    @endif
 
                 </div>
             </div>

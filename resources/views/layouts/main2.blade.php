@@ -50,8 +50,8 @@
                             <li class="hover:bg-slate-100 hover:px-1 {{ request()->routeIs('kategori.index') ? 'bg-slate-200 px-1' : '' }} w-full py-2"><i
                                     class="fas fa-window-restore mr-2"></i>Kategori Berita</li>
                         </a>
-                        <a href="" class="text-md font-semibold w-auto">
-                            <li class="hover:bg-slate-100 hover:px-1 w-full py-2"><i
+                        <a href="{{route('bobot.index')}}" class="text-md font-semibold w-auto">
+                            <li class="hover:bg-slate-100 hover:px-1 {{ request()->routeIs('bobot.index') ? 'bg-slate-200 px-1' : '' }} w-full py-2"><i
                                     class="fas fa-weight-hanging mr-2"></i>Bobot
                                 Berita</li>
                         </a>

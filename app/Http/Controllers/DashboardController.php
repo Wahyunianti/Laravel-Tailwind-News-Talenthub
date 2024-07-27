@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Models\Balasan;
 use App\Models\Komentar;
+use App\Models\Iklan;
 use Illuminate\Support\Facades\DB;
 
 
@@ -33,7 +34,10 @@ class DashboardController extends Controller
         ->orderBy(DB::raw('total_komentar + total_balasan'), 'desc')
         ->first();
 
-        return view('index', compact('tag', 'atk', 'afoto', 'ktg'));
+        $ikl = Iklan::where('posisi', 'Halaman Depan')->orderBy('updated_at')->first();
+
+
+        return view('index', compact('tag', 'atk', 'afoto', 'ktg', 'ikl'));
     }
 
     public function penulis()

@@ -9,6 +9,7 @@ use App\Models\Artikel;
 use App\Models\Komentar;
 use App\Models\Balasan;
 use App\Models\Tag;
+use App\Models\Iklan;
 use Illuminate\Support\Facades\DB;
 
 class BeritaController extends Controller
@@ -41,8 +42,9 @@ class BeritaController extends Controller
             ->where('k.artikels_id', $id)
             ->get()
             ->groupBy('komentar_id');
+        $ikl = Iklan::where('posisi', 'Halaman Berita')->orderBy('updated_at')->first();
 
-        return view('pembaca.tampil-berita', compact('atk', 'kmt'));
+        return view('pembaca.tampil-berita', compact('atk', 'kmt', 'ikl'));
     }
 
     public function komentar(Request $request, $id)

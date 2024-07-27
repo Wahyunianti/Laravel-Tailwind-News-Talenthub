@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Bobot extends Model
 {
     use HasFactory;
-    protected $table = 'balasans';
+    protected $table = 'bobots';
     protected $fillable = ['nilai', 'artikels_id'];
 
     public function artikel(): BelongsTo {

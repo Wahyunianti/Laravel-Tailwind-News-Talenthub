@@ -32,11 +32,12 @@
                                     
                             
                                     <div class="flex w-80 h-full flex-col p-5">
-                                        <p class="text-lg font-semibold uppercase mb-5 cursor-default"
+                                        <p class="text-lg font-semibold uppercase w-96 md:w-40 mb-5 cursor-default"
                                             style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 1;">
                                             {{$a->judul}}</p>
-                                        <div class="text-md font-normal mb-5 cursor-default"
-                                            style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 3;">
+                                        <div class="text-md font-normal w-96 md:w-40 mb-5 cursor-default"
+                                            style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 3;
+                                            ">
                                             {!! $a->konten !!}</div>
                                         <p
                                             class="text-sm cursor-default text-blue-400 overflow-hidden font-normal truncate mb-2">
@@ -98,15 +99,26 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="flex flex-col h-auto w-auto m-10 mt-0 border shadow-sm transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-100">
-                                    <a href="">
-                                        <div class="flex flex-col m-5 h-auto w-auto justify-center">
-                                            <img src="{{ asset('img/adss.jpeg')}}"
-                                                class="h-auto object-fit w-full md:w-full rounded-md" alt="">
-                                        </div>
-                                       
-                                    </a>
-                                </div>
+                                @if ($ikl)
+
+    <div class="flex flex-col h-auto w-auto m-10 mt-0 border shadow-sm transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-100">
+        <a href="{{ $ikl->url }}" target="_blank">
+            <div class="flex flex-col m-5 h-auto w-auto justify-center">
+            @if($ikl->foto)
+                            <img src="{{ asset('uploads/' . $ikl->foto) }}" alt="Nama"
+                            class="h-auto object-fit w-full md:w-full rounded-md">
+                            @else
+                            <img src="{{ asset('img/adss.jpeg') }}" class="h-auto object-fit w-full md:w-full rounded-md" alt="">
+
+                            @endif
+            </div>
+        </a>
+    </div>
+
+
+@endif
+
+
                             </div>
 
                         </div>
