@@ -21,7 +21,7 @@ class DashboardController extends Controller
         $tag = Tag::withCount('artikel')
         ->select('nama')
         ->distinct()
-        ->take(7)
+        ->take(50)
         ->get();
 
         $atk = Artikel::orderBy('updated_at', 'desc')->paginate(5);
