@@ -18,18 +18,18 @@
                                 class="flex flex-col min-h-min rounded-md w-80 border shadow-sm mb-5 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-100">
                                 @if($a->foto)
                                     <img src="{{ asset('uploads/' . $a->foto) }}" alt="Nama"
-                                        class="h-60 object-cover rounded-l-md">
+                                        class="h-60 object-cover rounded-md">
                                 @else
-                                    <img src="{{ asset('img/bunga.jpeg')}}" class="h-60 object-cover w-full rounded-l-md"
+                                    <img src="{{ asset('img/bunga.jpeg')}}" class="h-60 object-cover w-full rounded-md"
                                         alt="">
                                 @endif
 
-                                <div class="flex w-96 h-full flex-col p-5">
-                                    <p class="text-md  w-60 font-semibold uppercase mb-5 cursor-default"
+                                <div class="flex w-full h-full flex-col p-5 overflow-x-hidden">
+                                    <p class="text-md  w-full font-semibold uppercase mb-5 cursor-default"
                                         style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 1;">
                                         {{$a->judul}}
                                     </p>
-                                    <div class="text-md font-normal w-60 mb-5 cursor-default"
+                                    <div class="text-md font-normal w-full mb-5 cursor-default"
                                         style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 2;">
                                         {!!$a->konten!!}
                                     </div>

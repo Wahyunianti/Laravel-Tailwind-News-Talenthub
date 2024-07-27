@@ -18,9 +18,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $tag = Tag::select('nama')
+        $tag = Tag::withCount('artikel')
+        ->select('nama')
         ->distinct()
+        ->take(7)
         ->get();
+
         $atk = Artikel::orderBy('updated_at', 'desc')->paginate(5);
         
         $atm = Artikel::with('bobot')

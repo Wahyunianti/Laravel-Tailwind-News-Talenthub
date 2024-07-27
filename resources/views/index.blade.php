@@ -8,13 +8,13 @@
         <div class="swiper-wrapper">
             @foreach ($atm as $artikel)
                 <div class="swiper-slide">
-            <a href="{{ route('view.artikel', ['id' => $artikel->id, 'judul' => $artikel->judul]) }}">
+                    <a href="{{ route('view.artikel', ['id' => $artikel->id, 'judul' => $artikel->judul]) }}">
 
-                    <img src="{{ asset('uploads/' . $artikel->foto) }}" class="h-80 w-full object-cover rounded-md"
-                        alt="{{ $artikel->judul }}">
+                        <img src="{{ asset('uploads/' . $artikel->foto) }}" class="h-80 w-full object-center rounded-md"
+                            alt="{{ $artikel->judul }}">
                         <div class="absolute top-0 left-0 bg-black bg-opacity-50 text-white p-4 w-full">
-                        <p>{{ $artikel->judul }}</p>
-                    </div>
+                            <p>{{ $artikel->judul }}</p>
+                        </div>
                     </a>
 
                 </div>
@@ -32,12 +32,16 @@
             <div class="flex flex-col w-full">
                 <div class="flex flex-none w-80 xl:w-full pr-10 justify-between content-center truncate">
                     <p class="text-lg my-0 font-medium text-blue-800 float-left">TAGS</p>
-                    @foreach($tag as $tg)
-                        <a href="{{ route('search.tag', ['nama' => $tg->nama]) }}"
-                            class="text-md my-0 font-normal hover:text-blue-500">
-                            {{ $tg->nama }}
-                        </a>
-                    @endforeach
+                    <div class="marquee-wrapper flex overflow-hidden ml-2 relative">
+                        <div class="marquee-content flex gap-10 whitespace-nowrap">
+                            @foreach($tag as $tg)
+                                <a href="{{ route('search.tag', ['nama' => $tg->nama]) }}"
+                                    class="text-md my-0 font-normal hover:text-blue-500 mx-2">
+                                    {{ $tg->nama }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
 
                 <p class="text-lg my-5 font-medium text-blue-800">Berita Terbaru</p>
@@ -52,12 +56,12 @@
                                 alt="">
                         @endif
 
-                        <div class="flex w-80 h-full flex-col p-5">
-                            <p class="text-lg font-semibold uppercase w-96 md:w-40 mb-5 cursor-default"
+                        <div class="flex w-full h-full flex-col p-5 overflow-x-hidden">
+                            <p class="text-lg font-semibold uppercase w-full mb-5 cursor-default"
                                 style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 1;">
                                 {{$a->judul}}
                             </p>
-                            <div class="text-md font-normal w-96 md:w-40 mb-5 cursor-default"
+                            <div class="text-md font-normal w-full mb-5 cursor-default"
                                 style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 3;">
                                 {!! $a->konten !!}
                             </div>
@@ -151,6 +155,30 @@
     .swiper-slide {
         width: 100% !important;
 
+    }
+
+    .marquee-wrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .marquee-content {
+        display: flex;
+        white-space: nowrap;
+        animation: marquee 30s linear infinite;
+    }
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
     }
 </style>
 @endsection

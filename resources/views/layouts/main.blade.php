@@ -34,11 +34,11 @@
                             <div class="relative w-full">
 
                                 <input type="text" id="simple-search" name="query"
-                                    class="bg-gray-300 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-400 border border-gray-600 text-gray-900 text-sm rounded-lg"
                                     placeholder="Cari Kata Kunci Berita..." required />
                             </div>
                             <button type="submit"
-                                class="p-2.5 ms-2 text-sm font-medium text-white bg-gray-800 rounded-md w-20 content-center hover:bg-gray-500">
+                                class="p-2.5 ms-2 text-sm font-medium self-center text-white bg-gray-800 rounded-md w-auto content-center hover:bg-gray-500">
                                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

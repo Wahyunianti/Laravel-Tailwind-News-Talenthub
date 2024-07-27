@@ -11,6 +11,7 @@ use App\Models\Bobot;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -22,8 +23,8 @@ class Artikel extends Model
     protected $table = 'artikels';
     protected $fillable = ['id', 'judul', 'konten', 'foto', 'kategoris_id', 'users_id'];
 
-    public function kategori(): BelongsTo {
-        return $this->belongsTo(Kategori::class, 'kategoris_id');
+    public function kategori(): BelongsToMany {
+        return $this->belongsToMany(Kategori::class, 'kategoris_id');
     }
 
     public function users(): BelongsTo {

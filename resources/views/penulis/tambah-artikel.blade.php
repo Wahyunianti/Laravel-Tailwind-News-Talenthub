@@ -50,7 +50,19 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var quill = new Quill('#editor', {
-            theme: 'snow'
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                [{ 'font': [] }],
+                [{ 'size': [] }],
+                [{ 'header': [1, 2, false] }],
+                ['bold', 'italic', 'underline'],
+                [{'list': 'ordered'}, {'list': 'bullet'}],
+                ['link', 'image'],
+                [{ 'color': [] }, { 'background': [] }],
+                ['clean']
+                ]
+            }
         });
 
         var form = document.getElementById('forms');

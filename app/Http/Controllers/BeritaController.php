@@ -17,13 +17,12 @@ class BeritaController extends Controller
     public function Tagnama($nama)
     {
         $atk = Artikel::with('bobot', 'tag')
-        ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
-        ->leftJoin('tags', 'artikels.id', '=', 'tags.artikels_id')
-        ->orderBy('bobots.nilai', 'desc')
-        ->orderBy('artikels.updated_at', 'desc')
-        ->select('artikels.*')
-        ->where('tags.nama', $nama)
-        ->paginate(6);
+            ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
+            ->leftJoin('tags', 'artikels.id', '=', 'tags.artikels_id')
+            ->orderBy('bobots.nilai', 'desc')
+            ->select('artikels.*')
+            ->where('tags.nama', $nama)
+            ->paginate(6);
 
         return view('pembaca.berita', compact('atk'));
     }
@@ -31,13 +30,12 @@ class BeritaController extends Controller
     public function search(Request $request)
     {
         $searchTerm = $request->input('query');
-        $atk =  Artikel::with('bobot')
-        ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
-        ->orderBy('bobots.nilai', 'desc')
-        ->orderBy('artikels.updated_at', 'desc')
-        ->select('artikels.*')
-        ->where('artikels.judul', 'LIKE', "%{$searchTerm}%")
-        ->paginate(6);
+        $atk = Artikel::with('bobot')
+            ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
+            ->orderBy('bobots.nilai', 'desc')
+            ->select('artikels.*')
+            ->where('artikels.judul', 'LIKE', "%{$searchTerm}%")
+            ->paginate(6);
 
         return view('pembaca.berita', compact('atk'));
     }
@@ -60,6 +58,7 @@ class BeritaController extends Controller
             ->where('k.artikels_id', $id)
             ->get()
             ->groupBy('komentar_id');
+
         $ikl = Iklan::where('posisi', 'Halaman Berita')->orderBy('updated_at')->first();
 
         return view('pembaca.tampil-berita', compact('atk', 'kmt', 'ikl'));
@@ -104,29 +103,48 @@ class BeritaController extends Controller
     public function allberita()
     {
         $atk = Artikel::with('bobot')
-        ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
-        ->orderBy('bobots.nilai', 'desc')
-        ->orderBy('artikels.updated_at', 'desc')
-        ->select('artikels.*')
-        ->paginate(6);
+            ->leftJoin('bobots', 'artikels.id', '=', 'bobots.artikels_id')
+            ->orderBy('bobots.nilai', 'desc')
+            ->select('artikels.*')
+            ->paginate(6);
 
         return view('pembaca.berita', compact('atk'));
     }
 
     public function allkategori()
     {
-        $ktg = Kategori::with(['artikel' => function ($query) {
-            $query->orderBy('updated_at', 'desc')->take(3);
-        }])->get();
+
+        $ktg = Kategori::with([
+            'artikel' => function ($query) {
+                $query->orderBy('updated_at', 'desc')->take(3);
+            }
+        ])->get();
+
+        $ktg = DB::table('kategoris as k')
+        ->leftJoin('artikels as a', 'k.id', '=', 'a.kategoris_id')
+        ->select(
+            'k.id as kategori_id',
+            'k.nama as kategori_nama',
+            'a.id as artikel_id',
+            'a.judul as artikel_judul',
+            'a.konten as artikel_konten',
+            'a.foto as artikel_foto',
+            'a.updated_at as artikel_tanggal'
+        )
+        ->get()
+        ->groupBy('kategori_id');
+
 
         return view('pembaca.kategori', compact('ktg'));
     }
 
     public function subkategori($id)
     {
-        $ktg = Kategori::with(['artikel' => function ($query) {
-            $query->orderBy('updated_at', 'desc')->take(3);
-        }])->where('id', $id)->get();
+        $ktg = Kategori::with([
+            'artikel' => function ($query) {
+                $query->orderBy('updated_at', 'desc')->paginate(3);
+            }
+        ])->where('id', $id)->get();
 
         return view('pembaca.sub-kategori', compact('ktg'));
     }
