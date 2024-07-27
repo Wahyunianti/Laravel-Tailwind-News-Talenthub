@@ -81,5 +81,29 @@ class BeritaController extends Controller
         return redirect()->back()->with('success', 'Balasan berhasil ditambahkan');
     }
 
+    public function allberita()
+    {
+        $atk = Artikel::orderBy('updated_at', 'desc')->take(5)->get();
+
+        return view('pembaca.berita', compact('atk'));
+    }
+
+    public function allkategori()
+    {
+        $ktg = Kategori::with(['artikel' => function ($query) {
+            $query->orderBy('updated_at', 'desc')->take(3);
+        }])->get();
+
+        return view('pembaca.kategori', compact('ktg'));
+    }
+
+    public function subkategori($id)
+    {
+        $ktg = Kategori::with(['artikel' => function ($query) {
+            $query->orderBy('updated_at', 'desc')->take(3);
+        }])->where('id', $id)->get();
+
+        return view('pembaca.sub-kategori', compact('ktg'));
+    }
 
 }

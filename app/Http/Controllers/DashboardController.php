@@ -7,6 +7,11 @@ use Illuminate\View\View;
 use App\Models\Kategori;
 use App\Models\Artikel;
 use App\Models\Tag;
+use App\Models\User;
+use App\Models\Balasan;
+use App\Models\Komentar;
+use Illuminate\Support\Facades\DB;
+
 
 class DashboardController extends Controller
 {
@@ -15,9 +20,18 @@ class DashboardController extends Controller
         $tag = Tag::select('nama')
         ->distinct()
         ->get();
-        $atk = Artikel::all();
+        $atk = Artikel::orderBy('updated_at', 'desc')->take(5)->get();
         $ktg = Kategori::all();
-        $afoto = Artikel::first();
+
+        $afoto = Artikel::withCount(['komentar as total_komentar' => function ($query) {
+            $query->select(DB::raw('count(*)'));
+        }])
+        ->withCount(['komentar as total_balasan' => function ($query) {
+            $query->join('balasans', 'komentars.id', '=', 'balasans.komentars_id')
+                  ->select(DB::raw('count(balasans.id)'));
+        }])
+        ->orderBy(DB::raw('total_komentar + total_balasan'), 'desc')
+        ->first();
 
         return view('index', compact('tag', 'atk', 'afoto', 'ktg'));
     }
@@ -32,6 +46,12 @@ class DashboardController extends Controller
     }
     public function admins()
     {
-        return view('admin.dashboard');
+        $ctu = User::where('role_id', 2)->count();
+        $cta = Artikel::count();
+        $cti = Balasan::count() + Komentar::count();
+
+
+
+        return view('admin.dashboard', compact('ctu', 'cta', 'cti'));
     }
 }

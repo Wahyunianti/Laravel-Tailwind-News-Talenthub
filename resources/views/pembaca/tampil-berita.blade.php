@@ -4,14 +4,14 @@
 <div class="flex  flex-grow min-h-min " style="
     width: -webkit-fill-available;
 ">
-    <div class="flex mx-0 xl:mx-40 mt-10 border-0 xl:border-2 shadow-md w-full rounded-lg">
+    <div class="flex mx-0 xl:mx-40 mt-10 border-0 xl:border-2 shadow-none xl:shadow-md w-full rounded-lg">
 
-        <div class="flex flex-row mx-5 lg:mx-10 mt-10  p-0 md:p-5 w-full rounded-lg">
+        <div class="flex flex-row mx-5 lg:mx-10 mt-0 xl:mt-10  p-0 md:p-5 w-full rounded-lg">
 
 
             <div class="flex flex-col flex-grow-1 w-full ">
                 <div class="flex flex-row">
-                    <div class="flex flex-col w-full h-auto p-10 pt-0">
+                    <div class="flex flex-col w-full h-auto p-0 xl:p-10 pt-0">
                         <p class="text-xl font-semibold mb-2 w-full">{{ $atk->judul }}</p>
                         <div class="flex flex-row gap-2 text-blue-900 ">
                             <p>Tanggal Posting : {{ $atk->updated_at }}</p>
@@ -26,11 +26,11 @@
                         @endif
 
                         <div class="flex flex-col w-full mt-10">
-                            <div class="break-all">{!! $atk->konten !!}</div>
+                            <div class="break-normal">{!! $atk->konten !!}</div>
                         </div>
                         <form action="{{ route('add.komen', ['id' => $atk->id]) }}" method="post">
                             @csrf
-                            <div class="flex flex-col w-full h-auto mt-20">
+                            <div class="flex flex-col w-full h-auto mt-10">
                                 <div class="flex flex-row w-full gap-2 h-auto justify-between">
                                     <input class="w-full rounded-md" placeholder="Beri Komentar" type="text"
                                         name="komentar" id="">

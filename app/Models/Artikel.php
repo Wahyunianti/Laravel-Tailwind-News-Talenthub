@@ -6,6 +6,7 @@ use App\Models\Komentar;
 use App\Models\Balasan;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Bobot;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,10 @@ class Artikel extends Model
 
     public function balasan(): HasMany {
         return $this->hasMany(Balasan::class, 'artikels_id');
+    }
+    
+    public function bobot(): HasOne {
+        return $this->hasOne(Bobot::class, 'artikels_id');
     }
 
     public function tag(): HasMany {

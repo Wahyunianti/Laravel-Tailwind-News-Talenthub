@@ -28,8 +28,6 @@ use App\Http\Controllers\BeritaController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-Route::get('/berita', function(){return view('pembaca.tampil-berita');});
-
 Route::get('login', [DashboardController::class, 'index'])->name('index');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
@@ -46,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('pengguna/delete/{id}', [UserController::class, 'delete'])->name('pengguna.destroy');
     Route::put('pengguna/update/{id}', [UserController::class, 'update'])->name('pengguna.update');
 
-    Route::get('kategori', [KategoriController::class, 'index'])->name('kategori.index');
+    Route::get('kategori/index', [KategoriController::class, 'index'])->name('kategori.index');
     Route::post('kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
     Route::delete('kategori/delete/{id}', [KategoriController::class, 'delete'])->name('kategori.destroy');
     Route::put('kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
@@ -73,9 +71,15 @@ Route::middleware('auth')->group(function () {
     // });
 });
 
-Route::get('view-artikel/{id}', [BeritaController::class, 'viewberita'])->name('view.artikel');
+Route::get('view-artikel/{id}/{judul}', [BeritaController::class, 'viewberita'])->name('view.artikel');
 Route::post('add-komen/{id}', [BeritaController::class, 'komentar'])->name('add.komen');
 Route::post('add-balasan/{id}/{komen}', [BeritaController::class, 'balasan'])->name('add.balasan');
+Route::get('berita', [BeritaController::class, 'allberita'])->name('all.berita');
+Route::get('kategori', [BeritaController::class, 'allkategori'])->name('all.kategori');
+Route::get('subkategori/{id}', [BeritaController::class, 'subkategori'])->name('sub.kategori');
+
+
+
 
 
 
