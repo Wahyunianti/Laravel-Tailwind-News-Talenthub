@@ -3,8 +3,8 @@
 @section('content')
 <div class="flex flex-col xl:flex-col h-auto w-full p-10 pt-0 gap-7 justify-around">
     <div class="flex flex-col">
-        <div class="flex flex-row justify-between h-auto content-center">
-            <p class="font-semibold">Total Artikel : {{$count}}</p>
+        <div class="flex flex-row justify-between h-full content-center">
+            <p class="font-semibold self-center">Total Artikel : {{$count}}</p>
             <a href="{{route('tambah.artikel')}}"
                 class="p-2 bg-slate-900 hover:bg-slate-800 rounded-md text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-100"><i
                     class="fas fa-book mr-2"></i>Tambah

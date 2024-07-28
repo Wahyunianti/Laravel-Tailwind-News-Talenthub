@@ -1,7 +1,7 @@
 @extends('layouts.main3')
 
 @section('content')
-<div class="flex flex-col xl:flex-col h-auto w-full px-5 xl:px-20 gap-7 justify-around">
+<div class="flex flex-col xl:flex-col h-auto w-full px-0 xl:px-20 gap-7 justify-around">
     <div class="flex flex-col">
         <div class="flex flex-row justify-between h-auto content-center mb-5">
             <p class="font-semibold text-lg">Artikel</p>
@@ -9,7 +9,7 @@
         </div>
         <div class="flex flex-row flex-grow-1 h-auto w-full border border-black rounded-md shadow-sm p-5 xl:p-10 gap-5">
 
-        <div class="flex flex-col w-full h-auto p-5 xl:p-10 pt-0">
+        <div class="flex flex-col w-full h-auto p-0 xl:p-10 pt-0">
                         <p class="text-xl font-semibold mb-2 w-full">{{$atk->judul}}</p>
                         <div class="flex flex-row gap-2 text-blue-900">
                             <p>Tanggal Posting : {{$atk->updated_at}}</p>

@@ -55,7 +55,7 @@ class DashboardController extends Controller
     {
         $id_atk = auth()->user()->id;
         $count = Artikel::where('users_id', $id_atk)->count();
-        $atk = Artikel::where('users_id', $id_atk)->get();
+        $atk = Artikel::where('users_id', $id_atk)->orderBy('updated_at')->get();
 
         return view('penulis.dashboard', compact('atk', 'count'));
     }
@@ -64,8 +64,6 @@ class DashboardController extends Controller
         $ctu = User::where('role_id', 2)->count();
         $cta = Artikel::count();
         $cti = Balasan::count() + Komentar::count();
-
-
 
         return view('admin.dashboard', compact('ctu', 'cta', 'cti'));
     }

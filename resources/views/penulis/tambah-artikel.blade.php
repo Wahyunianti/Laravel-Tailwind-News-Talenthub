@@ -1,7 +1,7 @@
 @extends('layouts.main3')
 
 @section('content')
-<div class="flex flex-col xl:flex-col h-auto w-full px-5 xl:px-20 gap-7 justify-around">
+<div class="flex flex-col xl:flex-col h-auto w-full px-0 xl:px-20 gap-7 justify-around">
     <div class="flex flex-col">
         <div class="flex flex-row justify-between h-auto content-center mb-5">
             <p class="font-semibold text-lg">Tambah Artikel</p>
@@ -14,7 +14,7 @@
                 class="p-1 cursor-pointer px-5 bg-slate-900 hover:bg-slate-800 rounded-md text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-100">
                 <i class="fas fa-arrow-left mr-2 text-sm"></i>Kembali</a>
         </div>
-        <div class="flex flex-col flex-grow-1 h-auto w-full border border-black rounded-md shadow-sm p-10 gap-5">
+        <div class="flex flex-col flex-grow-1 h-auto w-full border border-black rounded-md shadow-sm p-2 xl:p-10 gap-5">
             <form class="form" id="forms" action="{{ route('artikel.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="flex flex-col w-full">
