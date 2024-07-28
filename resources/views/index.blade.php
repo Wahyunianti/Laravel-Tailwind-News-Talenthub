@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="flex flex-grow pt-10 ">
+<div class="flex flex-grow pt-10  px-0 xl:px-10">
     <div
-        class="flex flex-nowrap mx-0 xl:mx-40 border-0 xl:border-2 shadow-none xl:shadow-md w-full rounded-lg relative swiper-container">
+        class="flex flex-nowrap mx-0 xl:mx-36 border-0 xl:border-2 shadow-none xl:shadow-md w-full rounded-lg relative swiper-container">
         <div class="swiper-wrapper">
             @foreach ($atm as $artikel)
                 <div class="swiper-slide">
@@ -25,9 +25,9 @@
     </div>
 </div>
 
-<div class="flex flex-grow min-h-min pt-10">
+<div class="flex flex-grow pt-10 px-0 xl:px-10">
 
-    <div class="flex mx-0 xl:mx-40 border-0 xl:border-2 shadow-none xl:shadow-md w-full rounded-lg">
+    <div class="flex mx-0 border-0 xl:border-2 shadow-none xl:shadow-md w-auto rounded-lg">
         <div class="flex flex-row mx-5 lg:mx-10 mt-0 md:mt-10 p-0 md:p-5 w-full rounded-lg">
             <div class="flex flex-col w-full">
                 <div class="flex flex-none w-80 xl:w-full pr-10 justify-between content-center truncate">

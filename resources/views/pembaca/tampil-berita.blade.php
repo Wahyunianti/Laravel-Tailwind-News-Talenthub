@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="flex  flex-grow min-h-min " style="
+<div class="flex  flex-grow min-h-min overflow-x-hidden" style="
     width: -webkit-fill-available;
 ">
     <div class="flex mx-0 xl:mx-40 mt-10 border-0 xl:border-2 shadow-none xl:shadow-md w-full rounded-lg">
