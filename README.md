@@ -3,6 +3,8 @@
 ## Deskripsi
 Aplikasi portal berita bernama Awani News adalah aplikasi web untuk menampilkan berita terkini.
 
+Preview bisa dilihat di : https://awani.my.id/
+
 ## Prasyarat
 - PHP >= 8.2
 - Composer >= 2.x.x
